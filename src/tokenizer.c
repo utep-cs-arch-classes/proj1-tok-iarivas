@@ -1,7 +1,7 @@
 #include "tokenizer.h"
 #include <stdio.h>
 
-int main(){
+int main2(){
   printf("start\n");
 }
 
@@ -32,19 +32,22 @@ char *word_end(char *str){
   while(non_space_char(str[0])){
     i++;
   }
-  return &str[i]
+  return &str[i];
 }
 
 int count_words(char *str){
   int count = 0;
-  char *p = word_start(str[0]);
+  char *p = word_start(&str[0]);
   if(p[0] == '\0') { return 0;}
   while(p[0] != '\0'){
-    p = word_end(p[0]);
-    p = word_start(p[0]);
+    p = word_end(&p[0]);
+    p = word_start(&p[0]);
     count++;
   }
+  return count;
 }
+
+/*
 
 char *copy_str(char *instr, short len){}
 
@@ -54,3 +57,4 @@ void print_tokens(char **tokens){}
 
 void free_tokens(char **tokens){}
 
+*/
