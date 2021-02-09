@@ -6,7 +6,7 @@ char arr[LIMIT];
 
 int main(){
   int i = 0;
-  for(char input_char; ((input_char = getchar()) != "\n") && (i < LIMIT); i++){
+  for(char input_char; ((input_char = getchar()) != '\n') && (i < LIMIT); i++){
     arr[i] = input_char;
     putchar(input_char);
   }
