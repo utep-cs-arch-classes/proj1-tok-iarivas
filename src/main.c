@@ -17,6 +17,7 @@ int main(){
     else if(non_space_char(arr[j])){ printf("Non Space Char \n"); }
     else{ printf("Error \n"); }
   }
+  printf("yes");
   return 1;
 }
 
