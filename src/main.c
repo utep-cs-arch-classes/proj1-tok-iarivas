@@ -1,6 +1,7 @@
 #include "tokenizer.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "history.h"
 #define LIMIT 100
 char arr[LIMIT];
 
@@ -8,6 +9,7 @@ char arr[LIMIT];
 int main()
 {
   char input[LIMIT];
+  List *History = init_history();
   goto Options;
  Options:
   printf("Select an option below.\n");
@@ -30,13 +32,15 @@ int main()
   fgets(input, LIMIT, stdin);
   char **tokens = tokenize(input);
   print_tokens(tokens);
+  add_history(History, input);
   free_tokens(tokens);
   goto Options;
  History:
-  printf("History.\n");
+  print_history(History);
   goto Options;
- gHistory:
-  printf("gHistory.\n");
+ gHistory: ;
+  char *spec = get_history(History, atoi(input+1));
+  printf("%s\n", spec);
   goto Options;
  quit:
   printf("Thank you. Goodbye.\n");
