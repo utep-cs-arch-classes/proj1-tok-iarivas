@@ -10,6 +10,11 @@ void buffer(){
   for(char temp; ((temp = getchar()) != '\n' && i < LIMIT); i++){
     arr[i] = temp;
   }
+<<<<<<< HEAD
+=======
+  printf("yes");
+  return 1;
+>>>>>>> 485f36dcc4ba30c2310ada6abbfa1176d24c8754
 }
 
 int main()
