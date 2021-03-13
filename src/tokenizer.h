@@ -47,4 +47,5 @@ void print_tokens(char **tokens);
 /* Frees all tokens and the vector containing them. */
 void free_tokens(char **tokens);
 
+int word_len(char *str);
 #endif

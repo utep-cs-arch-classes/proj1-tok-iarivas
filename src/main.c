@@ -1,14 +1,19 @@
-#include "tokenizer.h"
+\#include "tokenizer.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "history.h"
 #define LIMIT 100
 char arr[LIMIT];
 
+void buffer(){
+  int i = 0;
+  for(char temp; ((temp = getchar()) != '\n' && i < LIMIT); i++){
+    arr[i] = temp;
+  }
+}
 
 int main()
 {
-  char input[LIMIT];
   List *History = init_history();
   goto Options;
  Options:
@@ -18,31 +23,32 @@ int main()
   printf("Input '!' and a number to get a specific token from history.\n");
   printf("Input 'q' to exit program.\n");
   printf(">");
-  fgets(input, LIMIT, stdin);
-  if(input[0] == 'i'){ goto input; }
-  else if(input[0] == 'h'){ goto History; }
-  else if(input[0] == '!'){ goto gHistory; }
-  else if(input[0] == 'q'){ goto quit; }
+  buffer();
+  if(arr[0] == 'i'){ goto input; }
+  else if(arr[0] == 'h'){ goto History; }
+  else if(arr[0] == '!'){ goto gHistory; }
+  else if(arr[0] == 'q'){ goto quit; }
   else{
     printf("Error please try again.\n");
     goto Options;
   }
  input:
   printf("Input sentence below. \n>");
-  fgets(input, LIMIT, stdin);
-  char **tokens = tokenize(input);
+  buffer();
+  char **tokens = tokenize(&(arr[0]));
   print_tokens(tokens);
-  add_history(History, input);
+  add_history(History, &(arr[0]));
   free_tokens(tokens);
   goto Options;
  History:
   print_history(History);
   goto Options;
  gHistory: ;
-  char *spec = get_history(History, atoi(input+1));
+  char *spec = get_history(History, atoi(arr+1));
   printf("%s\n", spec);
   goto Options;
  quit:
   printf("Thank you. Goodbye.\n");
   return 0;
+
 }

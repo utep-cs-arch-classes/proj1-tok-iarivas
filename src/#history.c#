@@ -21,7 +21,6 @@ void add_history(List *list, char *str)
     count++;
   }
   
-
   temp -> next = malloc(sizeof(Item));
   temp -> next -> str = copy_str(str, len);
   temp -> next -> id = count;

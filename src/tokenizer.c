@@ -11,7 +11,7 @@ int space_char(char c)
 
 int non_space_char(char c)
 {
-  if((c != ' ' || c != '\t') && c != 0){
+  if((c != ' ' && c != '\t') && c != 0){
     return 1;
   }return 0;
 }
@@ -37,12 +37,11 @@ char *word_end(char *str)
 int count_words(char *str)
 {
   int count = 0;
-  char *ptr = str;
+  char *ptr = word_start(str);
   while(*ptr != '\0')
   {
-    ptr = word_start(ptr);
-    ptr = word_end(ptr);
-    count++;
+    if(non_space_char(*ptr)){ count++; }
+    ptr = word_start(word_end(ptr));
   }
   return count;
 }
@@ -65,16 +64,9 @@ char **tokenize(char* str)
   int i;
   char *ptr = str;
   for(i = 0; i < words; i++){
-    char *start = word_start(ptr);
-    char *end = word_end(ptr);
-    char *ptr = start;
-    int len = 0;
-    while(ptr != end){
-      ptr++;
-      len++;
-    }
-    tokens[i] = copy_str(start, len);
-    ptr = end;
+    ptr = word_start(ptr);
+    tokens[i] = copy_str(ptr, word_len(ptr));
+    ptr = word_end(ptr);
   }
   tokens[i] = 0;
   return tokens;
@@ -99,3 +91,16 @@ void free_tokens(char **tokens)
   free(tokens);
 }
  
+int word_len(char *str){
+  int len = 0;
+  int i;
+  while(str[i] != '\0'){
+    if(non_space_char(str[i])){ len++; }
+    else{
+      return len;
+    }
+    i++;
+  }
+  return 0;
+}
+

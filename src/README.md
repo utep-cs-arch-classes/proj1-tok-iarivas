@@ -1,12 +1,13 @@
-Project 1: Tokenizer
+#Project 1: Tokenizer
 ====================
 # Instructions:
 
-You should document your tokenizer in this file.
+  -To compile be in the src folder and enter "make".
+  -To run program first compile then enter "./run".
+  -To clean folder once finished enter "make clean".
 
-This file is written in the refreshingly simple `markdown` text
-formatting language.
-
-To learn about text formatting using markdown, we encourage you to examine 
- - [../README.md](../README.md)
- - the online [Markdown Guide](https://www.markdownguide.org/).
+# Input:
+  -Enter 'i' to input a srting into the program.
+  -Enter 'h' to view your history.
+  -Enter '!' to view a specific history.
+  -Enter 'q' to exit the program.
